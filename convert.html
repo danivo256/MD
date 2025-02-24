@@ -15,7 +15,7 @@
 
     <h2>HTML to Base64 Converter</h2>
 
-    <textarea id="htmlInput" placeholder="Enter your HTML code here..."></textarea>
+    <textarea id="htmlInput" placeholder="Enter HTML here..."></textarea>
     <br>
     <button onclick="convertToBase64()">Convert</button>
 
@@ -43,11 +43,16 @@
             alert("Copied!");
         }
 
-        // Auto-process URL parameter if provided
+        // Get raw HTML from URL and encode it
         let htmlParam = getQueryParam("html");
         if (htmlParam) {
-            document.getElementById("htmlInput").value = decodeURIComponent(htmlParam);
-            convertToBase64();
+            try {
+                let decodedHtml = decodeURIComponent(htmlParam);
+                document.getElementById("htmlInput").value = decodedHtml;
+                convertToBase64(); // Auto-convert on page load
+            } catch (error) {
+                document.getElementById("htmlInput").value = "Error: Invalid input!";
+            }
         }
     </script>
 
