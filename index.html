@@ -39,6 +39,17 @@
 
     // Display the result
     document.getElementById('result').innerText = `Result: ${num1} + ${num2} = ${sum}`;
+
+    // Fallback for non-JavaScript environments (e.g., HTTP GET requests)
+    // If the result div is not updated, write the result directly to the page
+    if (!document.getElementById('result').innerText) {
+      document.write(`Result: ${num1} + ${num2} = ${sum}`);
+    }
   </script>
+
+  <!-- Fallback for non-JavaScript environments -->
+  <noscript>
+    <p>Result: <%= num1 %> + <%= num2 %> = <%= sum %></p>
+  </noscript>
 </body>
-</html>
+  </html>
