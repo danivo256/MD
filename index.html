@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        h1 { color: #333; }
+        #result { font-size: 24px; font-weight: bold; color: blue; }
+    </style>
+</head>
+<body>
+
+    <h1>Sum Calculator</h1>
+    <p id="result">Waiting for input...</p>
+
+    <script>
+        function getQueryParams() {
+            let params = new URLSearchParams(window.location.search);
+            let num1 = parseFloat(params.get("num1")) || 0;
+            let num2 = parseFloat(params.get("num2")) || 0;
+            let sum = num1 + num2;
+
+            document.getElementById("result").innerText = "Result: " + sum;
+        }
+
+        getQueryParams();
+    </script>
+
+</body>
+</html>
