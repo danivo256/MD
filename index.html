@@ -21,7 +21,9 @@
   <p>Enter two numbers as query parameters in the URL:</p>
   <p>Example: <code>https://yourgithubusername.github.io/?num1=73&num2=9</code></p>
 
-  <div class="result" id="result"></div>
+  <div class="result" id="result">
+    <!-- Result will be dynamically inserted here -->
+  </div>
 
   <script>
     // Function to get query parameters from the URL
@@ -39,17 +41,17 @@
 
     // Display the result
     document.getElementById('result').innerText = `Result: ${num1} + ${num2} = ${sum}`;
-
-    // Fallback for non-JavaScript environments (e.g., HTTP GET requests)
-    // If the result div is not updated, write the result directly to the page
-    if (!document.getElementById('result').innerText) {
-      document.write(`Result: ${num1} + ${num2} = ${sum}`);
-    }
   </script>
 
-  <!-- Fallback for non-JavaScript environments -->
+  <!-- Fallback for non-JavaScript environments (e.g., HTTP GET requests) -->
   <noscript>
     <p>Result: <%= num1 %> + <%= num2 %> = <%= sum %></p>
   </noscript>
+
+  <!-- Precompute the result for HTTP GET requests -->
+  <script>
+    // If JavaScript is not executed, write the result directly to the page
+    document.write(`<p>Result: ${num1} + ${num2} = ${sum}</p>`);
+  </script>
 </body>
-  </html>
+    </html>
