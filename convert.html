@@ -25,9 +25,8 @@
     <button onclick="copyToClipboard()">Copy</button>
 
     <script>
-        function getQueryParam(name) {
-            let urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
+        function getFragment() {
+            return decodeURIComponent(window.location.hash.substring(1));
         }
 
         function convertToBase64() {
@@ -43,16 +42,11 @@
             alert("Copied!");
         }
 
-        // Get raw HTML from URL and encode it
-        let htmlParam = getQueryParam("html");
-        if (htmlParam) {
-            try {
-                let decodedHtml = decodeURIComponent(htmlParam);
-                document.getElementById("htmlInput").value = decodedHtml;
-                convertToBase64(); // Auto-convert on page load
-            } catch (error) {
-                document.getElementById("htmlInput").value = "Error: Invalid input!";
-            }
+        // Auto-process the fragment input if provided
+        let htmlFragment = getFragment();
+        if (htmlFragment) {
+            document.getElementById("htmlInput").value = htmlFragment;
+            convertToBase64();
         }
     </script>
 
